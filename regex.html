@@ -233,12 +233,69 @@ the subject.</p>
     <li>Readability</li>
     <li>Efficiency</li>
     <li>Matching too much</li>
+    <li>Matching nothing</li>
 </ul>
 <div class="handout">
     notes
 </div>
 </div>
 
+<div class="slide">
+<h1>Backtracking and Longest Match</h1>
+<ul class="incremental">
+    <li>Expression: /a.*bc/</li>
+    <li>String: abca123456789abcdefghijklmnopqrstuvwzyx</li>
+    <li>Match: abca123456789abc</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Readability</h1>
+<ul>
+    <li>Shorter is better</li>
+    <li>Less complicated is better</li>
+    <li>Explicit is better</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Efficiency</h1>
+<ul>
+    <li>Anchors are good: <code>/^\s+key:\s*(.*)/</code></li>
+    <li>Explicit strings are good: <code>/cat\w*/</code></li>
+    <li>Alternation is slower: <code>/C\w*\.com|c\w*\.com/</li>
+    <li>Nested quantifiers can be dangerous: <code>/(\w*\s*)+/</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Matching Too Much</h1>
+<ul>
+    <li><code>/&lt;p>.+&lt;/p>/</code>
+    <li><code>/&lt;p>[^&lt;]+&lt;/p>/</code>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Matching Nothing</h1>
+<p>Remember <code>a*</code> and <code>a?</code> are successful when they
+match nothing.</p>
+<div class="handout">
+    notes
+</div>
+</div>
 
 
 
