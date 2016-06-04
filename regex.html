@@ -73,8 +73,124 @@
 </div>
 
 <div class="slide">
+<h1>You've heard the one about...</h1>
+<blockquote>Some people, when confronted with a problem, think <q>I know, I'll use regular expressions.</q> Now they have two problems.</blockquote>
+<div>
+    <div style="float: right">-- <cite>Some random crank</cite></div>
+</div>
+<div class="handout" style="clear: both">
+<p>The originator of this particular version of the joke was actually
+Jamie Zawinski. The quote was exhaustively <a target="_blank"
+    href="http://regex.info/blog/2006-09-15/247">researched</a> by
+Jeffrey Friedl. Follow the link for more than you wanted to know about
+the subject.</p>
+</div>
+</div>
+
+<div class="slide">
 <h1>What are Regular Expressions?</h1>
-    content
+<ul>
+    <li>A family of languages for matching strings</li>
+    <li>A system for describing strings abstractly</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>What are they good for?</h1>
+<ul>
+    <li>Recognizing strings</li>
+    <li>Parsing strings</li>
+    <li>Extracting strings</li>
+    <li>Transforming strings</li>
+    <li>Validating strings</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>... Or More succinctly</h1>
+<blockquote><code>(Recogniz|Pars|Extract|Transform|Validat)ing strings</code></blockquote>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Terms</h1>
+<ul>
+    <li>Literals: <code>a</code>, <code>%</code>, <code>3</code>, etc.</li>
+    <li><code>\0</code>, <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\f</code>, etc.</li>
+    <li><code>.</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Operations</h1>
+<ul>
+    <li>Concatenation: <code>abc</code></li>
+    <li>Alternation: <code>a|b</code></li>
+    <li>Quantifiers: <code>a+</code>, <code>a*</code>, <code>a?</code></li>
+    <li>Anchors/assertions: <code>^</code>, <code>$</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>What can we do with just this?</h1>
+<ul class="incremental">
+    <li><code>wade</code></li>
+    <li><code>cat|dog</code></li>
+    <li><code>"..."</code></li>
+    <li><code>^.+$</code></li>
+    <li><code>^.*$</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>A little more Power: Character Sets</h1>
+<ul>
+    <li><code>\d</code>, <code>\w</code>, <code>\s</code></li>
+    <li><code>[aeiou]</code>, <code>[0-9]</code>, <code>[a-zA-Z0-9_]</code></li>
+    <li><code>\D</code>, <code>\W</code>, <code>\S</code></li>
+    <li><code>[^aeiou]</code>, <code>[^0-9]</code>, <code>[^a-zA-Z0-9_]</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>More Anchors</h1>
+<ul>
+    <li><code>\A</code></li>
+    <li><code>\z</code>, <code>\Z</code></li>
+    <li><code>\b</code>, <code>\B</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Capturing</h1>
+<ul>
+    <li><code>(abc)</code></li>
+    <li><code>(?:abc)</code></li>
+    <li><code>\1</code>, <code>\2</code>, <code>\3</code>, etc.</li>
+</ul>
 <div class="handout">
     notes
 </div>
