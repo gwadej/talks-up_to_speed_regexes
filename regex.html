@@ -126,6 +126,7 @@ the subject.</p>
     <li>Literals: <code>a</code>, <code>%</code>, <code>3</code>, etc.</li>
     <li><code>\0</code>, <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\f</code>, etc.</li>
     <li><code>.</code></li>
+    <li>Anchors/assertions: <code>^</code>, <code>$</code></li>
 </ul>
 <div class="handout">
     notes
@@ -133,12 +134,11 @@ the subject.</p>
 </div>
 
 <div class="slide">
-<h1>Operations</h1>
+<h1>Basic Operations</h1>
 <ul>
     <li>Concatenation: <code>abc</code></li>
     <li>Alternation: <code>a|b</code></li>
     <li>Quantifiers: <code>a+</code>, <code>a*</code>, <code>a?</code></li>
-    <li>Anchors/assertions: <code>^</code>, <code>$</code></li>
 </ul>
 <div class="handout">
     notes
@@ -148,11 +148,11 @@ the subject.</p>
 <div class="slide">
 <h1>What can we do with just this?</h1>
 <ul class="incremental">
-    <li><code>wade</code></li>
-    <li><code>cat|dog</code></li>
-    <li><code>"..."</code></li>
-    <li><code>^.+$</code></li>
-    <li><code>^.*$</code></li>
+    <li><code>/wade/</code></li>
+    <li><code>/cat|dog/</code></li>
+    <li><code>/"..."/</code></li>
+    <li><code>/^.+$/</code></li>
+    <li><code>/^.*$/</code></li>
 </ul>
 <div class="handout">
     notes
@@ -190,6 +190,49 @@ the subject.</p>
     <li><code>(abc)</code></li>
     <li><code>(?:abc)</code></li>
     <li><code>\1</code>, <code>\2</code>, <code>\3</code>, etc.</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>More examples</h1>
+<ul class="incremental">
+    <li><code>/(\d\d\d) \d\d\d/</code></li>
+    <li><code>/(\d\d\d) \1/</code></li>
+    <li><code>/dead\bbeef/</code></li>
+    <li><code>/^\d+$/</code></li>
+    <li><code>/\A\d+\z/</code></li>
+    <li><code>/\A\d+\Z/</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Tips</h1>
+<ul>
+    <li>Match what you know</li>
+    <li>Left-most longest match</li>
+    <li>Anchor where you can</li>
+    <li>Anchors match between characters</li>
+    <li>Don't over match</li>
+    <li>Character classes always match a character</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Traps</h1>
+<ul>
+    <li>Backtracking</li>
+    <li>Readability</li>
+    <li>Efficiency</li>
+    <li>Matching too much</li>
 </ul>
 <div class="handout">
     notes

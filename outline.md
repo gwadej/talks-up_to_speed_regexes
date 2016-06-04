@@ -28,18 +28,18 @@
     - grouping
         - capture group
         - noncapture group
-    - Match what you know
+    - # Match what you know
     - Matching what you don't know
-    - Don't over match
+    - # Don't over match
 5. Simple tricks and traps
     - * vs + vs ?
     - greedy vs non-greedy
-    - longest left-most
-    - anchors are your friend
+    - # longest left-most
+    - # anchors are your friend
     - avoid alternation (unless that is what you need)
     - be careful nesting qualifiers
     - `a*` and `a?` can be successful matching nothing
-    - anchors match between characters
+    - # anchors match between characters
 6. More advanced features
     - Greedy vs non greedy +/`*`/?/{n,m} vs +?/`*?`/??/{n,m}?
     - lookahead: (?=abc), (?!abc)
@@ -50,11 +50,11 @@
     - readability
     - decide how much you really want to match
 8. Examples
-    - /(\d\d\d) \1/ vs /(\d\d\d) \d\d\d/
+    - # /(\d\d\d) \1/ vs /(\d\d\d) \d\d\d/
     - /^.+$/, /.+$/, /^.+/, `/^.*$/`
     - /^dog|cat$/
     - /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$/ vs /^\d{1,3}$/
-    - /dead\bbeef/
+    - #/dead\bbeef/
     - /[\s\n\t\f\v]/
     - `/<p>.*<\/p>/` vs `/<p>.*?<\/p>/` vs `/<p>[^<]*<\/p>/`
 9. Ruby vs JavaScript vs Perl
