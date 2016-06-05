@@ -36,9 +36,9 @@
     - greedy vs non-greedy
     - # longest left-most
     - # anchors are your friend
-    - avoid alternation (unless that is what you need)
-    - be careful nesting qualifiers
-    - `a*` and `a?` can be successful matching nothing
+    - # avoid alternation (unless that is what you need)
+    - # be careful nesting qualifiers
+    - # `a*` and `a?` can be successful matching nothing
     - # anchors match between characters
 6. More advanced features
     - Greedy vs non greedy +/`*`/?/{n,m} vs +?/`*?`/??/{n,m}?

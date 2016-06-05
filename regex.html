@@ -126,6 +126,7 @@ the subject.</p>
     <li>Literals: <code>a</code>, <code>%</code>, <code>3</code>, etc.</li>
     <li><code>\0</code>, <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\f</code>, etc.</li>
     <li><code>.</code></li>
+    <li><code>\.</code>, <code>\*</code>, etc.</li>
     <li>Anchors/assertions: <code>^</code>, <code>$</code></li>
 </ul>
 <div class="handout">
@@ -220,6 +221,7 @@ the subject.</p>
     <li>Anchors match between characters</li>
     <li>Don't over match</li>
     <li>Character classes always match a character</li>
+    <li>Consider <code>*</code> or <code>+</code> or <code>?</code></li>
 </ul>
 <div class="handout">
     notes
@@ -232,6 +234,7 @@ the subject.</p>
     <li>Backtracking</li>
     <li>Readability</li>
     <li>Efficiency</li>
+    <li>Alternation</li>
     <li>Matching too much</li>
     <li>Matching nothing</li>
 </ul>
@@ -239,6 +242,21 @@ the subject.</p>
     notes
 </div>
 </div>
+
+<div class="slide">
+<h1>More Traps</h1>
+<ul class="incremental">
+    <li><code>/[\s\t\r\n]/</code></li>
+    <li><code>/[a-z-]/</code></li>
+    <li><code>/[][]/</code></li>
+    <li><code>/[.*?+]/</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+
 
 <div class="slide">
 <h1>Backtracking and Longest Match</h1>
@@ -269,13 +287,24 @@ the subject.</p>
 <ul>
     <li>Anchors are good: <code>/^\s+key:\s*(.*)/</code></li>
     <li>Explicit strings are good: <code>/cat\w*/</code></li>
-    <li>Alternation is slower: <code>/C\w*\.com|c\w*\.com/</li>
     <li>Nested quantifiers can be dangerous: <code>/(\w*\s*)+/</code></li>
 </ul>
 <div class="handout">
     notes
 </div>
 </div>
+
+<div class="slide">
+<h1>Alternation</h1>
+<ul>
+    <li>Slow: <code>/C\w*\.com|c\w*\.com/</code></li>
+    <li>Precedence: <code>/^cat|dog$/</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
 
 <div class="slide">
 <h1>Matching Too Much</h1>
