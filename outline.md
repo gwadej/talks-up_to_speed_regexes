@@ -1,39 +1,38 @@
 # Outline for Up to Speed with Regex
 
 1. What are they?
-    - Language for matching strings
-    - Recognizing
-    - Parsing
-    - Data extraction
-    - Data transformation
-    - Validation
+    - # Language for matching strings
+    - # Recognizing
+    - # Parsing
+    - # Data extraction
+    - # Data transformation
+    - # Validation
 2. Getting Started
-    - a
-    - \0, \n, \r, \t, \f,
-    - .
-    - abc
-    - a|b
-    - a+, `a*`, a?
-    - ^, $
+    - # a
+    - # \0, \n, \r, \t, \f,
+    - # .
+    - # abc
+    - # a|b
+    - # a+, `a*`, a?
+    - # ^, $
 3. A little more advanced
-    - \d, \D, \w, \W, \s, \S (Limited to ASCII)
-    - [char], [^char]
-    - \A, \z, \Z, \b, \B
-    - (abc), (?:abc)
-    - \1, \2, \3, etc
+    - # \d, \D, \w, \W, \s, \S (Limited to ASCII)
+    - # [char], [^char]
+    - # \A, \z, \Z, \b, \B
+    - # (abc), (?:abc)
+    - # \1, \2, \3, etc
 4. Fundamental tips
     - Character classes
         - use of backslash in character class
-        - use of character classes inside
-    - grouping
-        - capture group
-        - noncapture group
+        - # use of character classes inside
+    - # grouping
+        - # capture group
+        - # noncapture group
     - # Match what you know
     - Matching what you don't know
     - # Don't over match
 5. Simple tricks and traps
-    - * vs + vs ?
-    - greedy vs non-greedy
+    - # * vs + vs ?
     - # longest left-most
     - # anchors are your friend
     - # avoid alternation (unless that is what you need)
@@ -52,7 +51,7 @@
 8. Examples
     - # /(\d\d\d) \1/ vs /(\d\d\d) \d\d\d/
     - /^.+$/, /.+$/, /^.+/, `/^.*$/`
-    - /^dog|cat$/
+    - # /^dog|cat$/
     - /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$/ vs /^\d{1,3}$/
     - #/dead\bbeef/
     - /[\s\n\t\f\v]/
