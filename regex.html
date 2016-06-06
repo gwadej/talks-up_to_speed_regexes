@@ -121,6 +121,19 @@ the subject.</p>
 </div>
 
 <div class="slide">
+<h1>Learning/Testing Tools</h1>
+<ul>
+    <li><a href="http://rubular.com/">Rubular</a></li>
+    <li><code>rxrx</code> from <code>Regexp::Debugger</code></li>
+    <li><a href="http://www.regexpal.com/" target="_blank">RegexPal</a></li>
+    <li>Search on-line, there are a bunch</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
 <h1>Terms</h1>
 <ul>
     <li>Literals: <code>a</code>, <code>%</code>, <code>3</code>, etc.</li>
@@ -154,6 +167,7 @@ the subject.</p>
     <li><code>/"..."/</code></li>
     <li><code>/^.+$/</code></li>
     <li><code>/^.*$/</code></li>
+    <li><code>/^.*/</code> versus <code>/.*$/</code></li>
 </ul>
 <div class="handout">
     notes
@@ -184,6 +198,19 @@ the subject.</p>
     notes
 </div>
 </div>
+
+<div class="slide">
+<h1>Arbitrary Quantifier</h1>
+<ul>
+    <li><code>/a{n}/</code> - match <code>n</code> times</li>
+    <li><code>/a{n,}/</code> - match at least <code>n</code> times</li>
+    <li><code>/a{n,m}/</code> - match at least <code>n</code> but no more than <code>m</code>  times</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
 
 <div class="slide">
 <h1>Capturing</h1>
@@ -217,11 +244,12 @@ the subject.</p>
 <ul>
     <li>Match what you know</li>
     <li>Left-most longest match</li>
+    <li>Quantifiers are greedy by default</li>
     <li>Anchor where you can</li>
     <li>Anchors match between characters</li>
     <li>Don't over match</li>
     <li>Character classes always match a character</li>
-    <li>Consider <code>*</code> or <code>+</code> or <code>?</code></li>
+    <li>Consider <code>*</code> versus <code>+</code> versus <code>?</code></li>
 </ul>
 <div class="handout">
     notes
@@ -244,21 +272,6 @@ the subject.</p>
 </div>
 
 <div class="slide">
-<h1>More Traps</h1>
-<ul class="incremental">
-    <li><code>/[\s\t\r\n]/</code></li>
-    <li><code>/[a-z-]/</code></li>
-    <li><code>/[][]/</code></li>
-    <li><code>/[.*?+]/</code></li>
-</ul>
-<div class="handout">
-    notes
-</div>
-</div>
-
-
-
-<div class="slide">
 <h1>Backtracking and Longest Match</h1>
 <ul class="incremental">
     <li>Expression: /a.*bc/</li>
@@ -274,7 +287,7 @@ the subject.</p>
 <h1>Readability</h1>
 <ul>
     <li>Shorter is better</li>
-    <li>Less complicated is better</li>
+    <li>Simpler is better</li>
     <li>Explicit is better</li>
 </ul>
 <div class="handout">
@@ -305,7 +318,6 @@ the subject.</p>
 </div>
 </div>
 
-
 <div class="slide">
 <h1>Matching Too Much</h1>
 <ul>
@@ -326,6 +338,51 @@ match nothing.</p>
 </div>
 </div>
 
+<div class="slide">
+<h1>Character Class Traps</h1>
+<ul class="incremental">
+    <li><code>/[\s\t\r\n]/</code></li>
+    <li><code>/[a-z-]/</code></li>
+    <li><code>/[][]/</code></li>
+    <li><code>/[.*?+]/</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>More Advanced Features</h1>
+<ul>
+    <li>Non-greedy quantifiers: <code>+?</code>, <code>*?</code>, <code>??</code>, <code>{n,m}?</code></li>
+    <li>Positive lookahead: <code>abc(?=def)</code></li>
+    <li>Negative lookahead: <code>abc(?!def)</code></li>
+    <li>Positive and negative lookbehind not supported by JavaScript</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Examples</h1>
+<ul class="incremental">
+    <li><code>/^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$/</code></li>
+    <li><code>/^\d{1,3}$/</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1><strong>The</strong> Book</h1>
+<p><em>Mastering Regular Expressions</em> by Jeffrey Friedl</p>
+<p>Available from O'Reilly and on Safari</p>
+<div class="handout">
+    notes
+</div>
+</div>
 
 </body>
 </html>

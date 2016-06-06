@@ -50,15 +50,15 @@
     - decide how much you really want to match
 8. Examples
     - # /(\d\d\d) \1/ vs /(\d\d\d) \d\d\d/
-    - /^.+$/, /.+$/, /^.+/, `/^.*$/`
+    - # /^.+$/, /.+$/, /^.+/, `/^.*$/`
     - # /^dog|cat$/
-    - /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$/ vs /^\d{1,3}$/
-    - #/dead\bbeef/
-    - /[\s\n\t\f\v]/
+    - # /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$/ vs /^\d{1,3}$/
+    - # /dead\bbeef/
+    - # /[\s\n\t\f\v]/
     - `/<p>.*<\/p>/` vs `/<p>.*?<\/p>/` vs `/<p>[^<]*<\/p>/`
 9. Ruby vs JavaScript vs Perl
-    - JavaScript has no lookbehinds
-    - \d, \w, \s match ASCII characters not unicode
+    - # JavaScript has no lookbehinds
+    - # \d, \w, \s match ASCII characters not unicode
 10. Tools
     - http://rubular.com
     - rxrx from Perl's Regexp::Debugger
