@@ -1,3 +1,1 @@
-= Algorithmic Complexity Made Simple
-
-Presentation for a potential Houston.pm meeting.
+= Up to Speed Regexes
