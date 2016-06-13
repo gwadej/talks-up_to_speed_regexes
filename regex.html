@@ -94,7 +94,8 @@ the subject.</p>
     <li>A system for describing strings abstractly</li>
 </ul>
 <div class="handout">
-    notes
+<p>There are a lot of variations of regular expression syntax and functionality.
+Be sure you know which set you are using to avoid over/under matching.</p>
 </div>
 </div>
 
@@ -108,7 +109,8 @@ the subject.</p>
     <li>Validating strings</li>
 </ul>
 <div class="handout">
-    notes
+<p>Regular expressions are really good at fuzzy descriptions of strings. This
+means they can be used for each of these specific purposes.</p>
 </div>
 </div>
 
@@ -116,7 +118,7 @@ the subject.</p>
 <h1>... Or More succinctly</h1>
 <blockquote><code>(Recogniz|Pars|Extract|Transform|Validat)ing strings</code></blockquote>
 <div class="handout">
-    notes
+<p>You did see that coming, right?</p>
 </div>
 </div>
 
@@ -129,7 +131,9 @@ the subject.</p>
     <li>Search on-line, there are a bunch</li>
 </ul>
 <div class="handout">
-    notes
+<p>Hopefully, I'll get some time later to demonstrate <code>rxrx</code> from
+Perl. It's regular expressions are a little differrent than you will be using,
+but it's ability to show how a match happens is pretty amazing.</p>
 </div>
 </div>
 
@@ -143,7 +147,14 @@ the subject.</p>
     <li>Anchors/assertions: <code>^</code>, <code>$</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>You can think of these as the fundamental terms in specifying a regular
+expression. We use these by themselves or with various operators to construct
+our regular expressions. Although it seems obvious, all but the last set match
+one character.</p>
+<p>The anchors don't actually match a character, instead they match
+a location in a string. The <code>^</code> matches at the beginning of the
+string or immediately after a newline character. The <code>$</code> matches
+at the end of a string or immediately before a newline character.</p>
 </div>
 </div>
 
@@ -155,7 +166,12 @@ the subject.</p>
     <li>Quantifiers: <code>a+</code>, <code>a*</code>, <code>a?</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>The concatenation of a series of terms matches the first term, followed
+immediately by the second, etc.</p>
+<p>Alternation matches either the expression to its left or the expression
+to its right. It will attempt a complete match on the left one before attempting
+the right one. If the first matches, the second won't be tried. This means it
+finds the first match, not the best match.</p>
 </div>
 </div>
 
@@ -170,7 +186,8 @@ the subject.</p>
     <li><code>/^.*/</code> versus <code>/.*$/</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>When describing these, be very precise. Understanding exactly what you
+are matching is the key to effective regular expressions.</p>
 </div>
 </div>
 
@@ -213,7 +230,7 @@ the subject.</p>
 
 
 <div class="slide">
-<h1>Capturing</h1>
+<h1>Grouping/Capturing</h1>
 <ul>
     <li><code>(abc)</code> - capture and group</li>
     <li><code>(?:abc)</code> - just group</li>
@@ -229,6 +246,7 @@ the subject.</p>
 <ul class="incremental">
     <li><code>/(\d\d\d) \d\d\d/</code></li>
     <li><code>/(\d\d\d) \1/</code></li>
+    <li><code>/(\w+)\s+\1/</code></li>
     <li><code>/dead\bbeef/</code></li>
     <li><code>/^\d+$/</code></li>
     <li><code>/\A\d+\z/</code></li>
@@ -240,16 +258,25 @@ the subject.</p>
 </div>
 
 <div class="slide">
+<h1>Be Aware</h1>
+<ul>
+    <li>Left-most longest match</li>
+    <li>Quantifiers are greedy by default</li>
+    <li>Anchors match between characters</li>
+    <li>Character classes always match a character</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
 <h1>Tips</h1>
 <ul>
     <li>Match what you know</li>
-    <li>Left-most longest match</li>
-    <li>Quantifiers are greedy by default</li>
     <li>Anchor where you can</li>
-    <li>Anchors match between characters</li>
     <li>Don't over match</li>
-    <li>Character classes always match a character</li>
-    <li>Consider <code>*</code> versus <code>+</code> versus <code>?</code></li>
+    <li>Consider <code>*</code> versus <code>+</code> or <code>?</code></li>
 </ul>
 <div class="handout">
     notes
@@ -260,11 +287,9 @@ the subject.</p>
 <h1>Traps</h1>
 <ul>
     <li>Backtracking</li>
-    <li>Readability</li>
-    <li>Efficiency</li>
-    <li>Alternation</li>
     <li>Matching too much</li>
     <li>Matching nothing</li>
+    <li>Alternation</li>
 </ul>
 <div class="handout">
     notes
@@ -277,30 +302,6 @@ the subject.</p>
     <li>Expression: /a.*bc/</li>
     <li>String: abca123456789abcdefghijklmnopqrstuvwzyx</li>
     <li>Match: abca123456789abc</li>
-</ul>
-<div class="handout">
-    notes
-</div>
-</div>
-
-<div class="slide">
-<h1>Readability</h1>
-<ul>
-    <li>Shorter is better</li>
-    <li>Simpler is better</li>
-    <li>Explicit is better</li>
-</ul>
-<div class="handout">
-    notes
-</div>
-</div>
-
-<div class="slide">
-<h1>Efficiency</h1>
-<ul>
-    <li>Anchors are good: <code>/^\s+key:\s*(.*)/</code></li>
-    <li>Explicit strings are good: <code>/cat\w*/</code></li>
-    <li>Nested quantifiers can be dangerous: <code>/(\w*\s*)+/</code></li>
 </ul>
 <div class="handout">
     notes
@@ -339,7 +340,42 @@ match nothing.</p>
 </div>
 
 <div class="slide">
-<h1>Character Class Traps</h1>
+<h1>Things to Consider</h1>
+<ul>
+    <li>Readability</li>
+    <li>Efficiency</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Readability</h1>
+<ul>
+    <li>Shorter is better</li>
+    <li>Simpler is better</li>
+    <li>Explicit is better</li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Efficiency</h1>
+<ul>
+    <li>Anchors are good: <code>/^\s+key:\s*(.*)/</code></li>
+    <li>Explicit strings are good: <code>/cat\w*/</code></li>
+    <li>Nested quantifiers can be dangerous: <code>/(\w*\s*)+/</code></li>
+</ul>
+<div class="handout">
+    notes
+</div>
+</div>
+
+<div class="slide">
+<h1>Character Class Surprises</h1>
 <ul class="incremental">
     <li><code>/[\s\t\r\n]/</code></li>
     <li><code>/[a-z-]/</code></li>
