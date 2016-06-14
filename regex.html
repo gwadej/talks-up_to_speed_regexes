@@ -162,7 +162,7 @@ at the end of a string or immediately before a newline character.</p>
 <h1>Basic Operations</h1>
 <ul>
     <li>Concatenation: <code>abc</code></li>
-    <li>Alternation: <code>a|b</code></li>
+    <li>Alternation: <code>abc|def</code></li>
     <li>Quantifiers: <code>a+</code>, <code>a*</code>, <code>a?</code></li>
 </ul>
 <div class="handout">
@@ -289,6 +289,7 @@ The key is to remember to count the left parenthesis.</p>
     <li><code>/(\w+)\s+\1/</code></li>
     <li><code>/dead\bbeef/</code></li>
     <li><code>/^\d+$/</code></li>
+    <li> - <code>"Hello\n12345\nWorld"</code></li>
     <li><code>/\A\d+\z/</code></li>
     <li><code>/\A\d+\Z/</code></li>
 </ul>
@@ -418,7 +419,7 @@ a paragraph that contains no other tags.</p>
 
 <div class="slide">
 <h1>Matching Nothing</h1>
-<p>Remember <code>a*</code> and <code>a?</code> are successful when they
+<p>Remember <code>a*</code> and <code>a?</code> are still successful when they
 match nothing.</p>
 
 <ul class="incremental">
@@ -465,6 +466,7 @@ or build a larger expression out of smaller ones, try to do that.</p>
     <li>Anchors are good: <code>/^\s+key:\s*(.*)/</code></li>
     <li>Explicit strings are good: <code>/cat\w*/</code></li>
     <li>Nested quantifiers can be dangerous: <code>/(\w*\s*)+/</code></li>
+    <li>Unanchored quantified sub-expressions at beginning or end</li>
 </ul>
 <div class="handout">
 <p>In the normal case, a regular expression will keep trying to match in as
@@ -476,6 +478,8 @@ expression, the engine will normally scan the text first looking for that
 string and may give up without matching anything else.</p>
 <p>Nested quantifiers can be extremely slow due to exponential time
 complexity caused by multiple attempts to backtrack over the string.</p>
+<p>If you have an unanchored quantified subexpression at the front or back of
+your regular expression, consider whether it does anything at all for you.</p>
 </div>
 </div>
 
