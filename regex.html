@@ -132,7 +132,7 @@ means they can be used for each of these specific purposes.</p>
 </ul>
 <div class="handout">
 <p>Hopefully, I'll get some time later to demonstrate <code>rxrx</code> from
-Perl. It's regular expressions are a little differrent than you will be using,
+Perl. It's regular expressions are a little different than you will be using,
 but it's ability to show how a match happens is pretty amazing.</p>
 </div>
 </div>
@@ -192,7 +192,7 @@ are matching is the key to effective regular expressions.</p>
 </div>
 
 <div class="slide">
-<h1>A little more Power: Character Sets</h1>
+<h1>A little more Power: Character Classes</h1>
 <ul>
     <li><code>\d</code>, <code>\w</code>, <code>\s</code></li>
     <li><code>[aeiou]</code>, <code>[0-9]</code>, <code>[a-zA-Z0-9_]</code></li>
@@ -200,7 +200,24 @@ are matching is the key to effective regular expressions.</p>
     <li><code>[^aeiou]</code>, <code>[^0-9]</code>, <code>[^a-zA-Z0-9_]</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>The <code>.</code> is quite powerful, but kind of a blunt tool. Character
+classes give much more precision. The first three are short, because they are
+very useful when matching or manipulating text. Add in the general form, and
+you can do precision matching of most kinds of text.</p>
+<p>The general character class matches any character inside the square brackets.
+Two characters separated by a dash defines a range of characters. Metacharacters
+like <code>.</code> or <code>*</code> lose their special abilities inside the
+square brackets. The escape code character classes effectively expand to their
+full value inside the class. This allows you to combine and extend the built-in
+character classes easily.</p>
+<p>The uppercase version of the escape code character classes is just the inverse
+of the lower case versions. So <code>\D</code> is any non-digit character, etc.
+To make the negated form of the general character class, use <code>^</code> as
+the first character. That is the only position where the character is special.</p>
+<p>The only characters that are special in a character class are the <code>^</code>
+at the beginning, the <code>-</code> in a range, the <code>]</code> that
+closes the class, and the <code>\</code> which negates the effects of one of the
+special character class characters.</p>
 </div>
 </div>
 
@@ -212,7 +229,18 @@ are matching is the key to effective regular expressions.</p>
     <li><code>\b</code>, <code>\B</code> - Word/non-word boundary</li>
 </ul>
 <div class="handout">
-    notes
+<p>The <code>\A</code> anchor only matches at the beginning of the string.
+It's like the <code>^</code> without the special behavior around newlines.
+For validation, you almost always want <code>\A</code> instead of <code>^</code>.</p>
+<p>The next two anchors match at the end of the string. The only difference
+between them is that the <code>\Z</code> will match before a newline at the
+end of a string.</p>
+<p>The word anchors are a bit different. The <code>\b</code> matches at the
+boundary of a word. This can be at the beginning or end of a string that
+borders a word character or between a word character and a non-word character.
+The <code>\B</code> matches at where there is no word boundary. Either between
+two word characters, between two non-word characters, or between a non-word
+character and the beginning or end of the string.</p>
 </div>
 </div>
 
@@ -221,13 +249,14 @@ are matching is the key to effective regular expressions.</p>
 <ul>
     <li><code>/a{n}/</code> - match <code>n</code> times</li>
     <li><code>/a{n,}/</code> - match at least <code>n</code> times</li>
-    <li><code>/a{n,m}/</code> - match at least <code>n</code> but no more than <code>m</code>  times</li>
+    <li><code>/a{n,m}/</code> - match at least <code>n</code> but no more than <code>m</code> times</li>
 </ul>
 <div class="handout">
-    notes
+<p>When we need a quantifier, the normal <code>*</code>, <code>?</code>, and <code>+</code>
+are also blunt tools. Sometimes you need more precision and these quantifiers
+give you that.</p>
 </div>
 </div>
-
 
 <div class="slide">
 <h1>Grouping/Capturing</h1>
@@ -237,15 +266,26 @@ are matching is the key to effective regular expressions.</p>
     <li><code>\1</code>, <code>\2</code>, <code>\3</code>, etc.</li>
 </ul>
 <div class="handout">
-    notes
+<p>The next power tool in your regular expressions is grouping, with or without
+capturing. The quantifiers only work on the preceding term. In many cases that
+would be a single character. Using grouping, yon can apply a quantifier to an
+entire sub-expression. Grouping is also useful for containing alternation, as
+seen in my joke earlier.</p>
+<p>The simple parentheses also <em>capture</em> the matched text for later use.
+You'll most often find that useful for regular expression used in substitutions,
+but it can also be very helpful in certain matches. You use the captured matches
+with the <code>\{number}</code> notation. Where the number is the appropriate
+matching group. When the capturing groups are separate, it's easy to tell which
+group matches which number. Things get a little messier when parentheses nest.
+The key is to remember to count the left parenthesis.</p>
 </div>
 </div>
 
 <div class="slide">
 <h1>More examples</h1>
 <ul class="incremental">
-    <li><code>/(\d\d\d) \d\d\d/</code></li>
-    <li><code>/(\d\d\d) \1/</code></li>
+    <li><code>/(\d{3})0\d{3}/</code></li>
+    <li><code>/(\d{3})0\1/</code></li>
     <li><code>/(\w+)\s+\1/</code></li>
     <li><code>/dead\bbeef/</code></li>
     <li><code>/^\d+$/</code></li>
@@ -253,7 +293,8 @@ are matching is the key to effective regular expressions.</p>
     <li><code>/\A\d+\Z/</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>Let's go over some more examples, based on some of the new things we've
+learned.</p>
 </div>
 </div>
 
@@ -266,7 +307,19 @@ are matching is the key to effective regular expressions.</p>
     <li>Character classes always match a character</li>
 </ul>
 <div class="handout">
-    notes
+<p>If there are two substrings that match a regular expression, the regular
+expression actually only matches the one that starts the furthest to the left.
+Each of the quantifiers we have seen will match as much as possible before
+testing the next term in the expression. If the next term is not a match, the
+quantifier will backtrack, giving up one character and retrying the match. This
+will repeat until the whole expression matches or the regular expression fails.</p>
+<p>Anchors match a position in the string, not an actual character. Most people
+find it easier to think of an anchor as matching the location before or after
+a character.</p>
+<p>Character classes match a character if they match at all. Sometimes people get
+sloppy thinking about negated character classes and talk about matching <em>if
+the appropriate character is not there</em>. This is not correct. A negated
+character class matches a character that is not in the list.</p>
 </div>
 </div>
 
@@ -279,7 +332,14 @@ are matching is the key to effective regular expressions.</p>
     <li>Consider <code>*</code> versus <code>+</code> or <code>?</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>If you know something for certain about a string, match it. Anchors and
+runs of know characters can help make certain you are matching what you think
+you are matching. Try not to be over-general in what you are trying to match.
+That may result in matching something that you did not intend to.</p>
+<p>Many people use <code>*</code> when one of the other quantifiers would be
+more precise. Keep in mind whether matching nothing would be acceptable.
+Also remember that <code>*</code> is probably not right for an optional
+item.</p>
 </div>
 </div>
 
@@ -292,7 +352,18 @@ are matching is the key to effective regular expressions.</p>
     <li>Alternation</li>
 </ul>
 <div class="handout">
-    notes
+<p>Remember that greedy quantifiers will match everything they can before the
+next term is allowed to try. If the rest of the regex can't match, then
+the regex engages in backtracking. The quantifier is forced to give up one
+match and then allow the rest of the regex to try again. This may repeat
+until the quantifier can no longer match.</p>
+<p>Likewise, overly general character classes can result in matching more than
+you expect.</p>
+<p>Remember that some quantifiers may match nothing which can result in
+unexpected behavior.</p>
+<p>Alternation often results in surprises. The regular expression will try
+to match everything to the left of the <code>|</code> before attempting
+what is to the right.</p>
 </div>
 </div>
 
@@ -304,7 +375,9 @@ are matching is the key to effective regular expressions.</p>
     <li>Match: abca123456789abc</li>
 </ul>
 <div class="handout">
-    notes
+<p>Remember that greedy quantifiers will match everything they can before the
+next term is allowed to try. This can result in matching more than you expect.
+If the input string is long, it can also result in very slow matches.</p>
 </div>
 </div>
 
@@ -312,10 +385,20 @@ are matching is the key to effective regular expressions.</p>
 <h1>Alternation</h1>
 <ul>
     <li>Slow: <code>/C\w*\.com|c\w*\.com/</code></li>
+    <li>Order: <code>/cat|dog|rabbit|goat|cattle|deer/</code></li>
     <li>Precedence: <code>/^cat|dog$/</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>Alternation often results in surprises. The regular expression will try
+to match everything to the left of the <code>|</code> before attempting
+what is to the right. If the two expressions are long or would have overlapped
+this can result in a lot of extra work.</p>
+<p>So, if the left side of the alternation would match and the right side would
+be a better match. The left one is still the only one matched. This is
+especially surprising if the item on the left is a subset of the one on the
+right.</p>
+<p>The alternative operation also has the lowest precedence of any operation
+in a regular expression. Be careful about what you think is on each side.</p>
 </div>
 </div>
 
@@ -326,7 +409,10 @@ are matching is the key to effective regular expressions.</p>
     <li><code>/&lt;p>[^&lt;]+&lt;/p>/</code>
 </ul>
 <div class="handout">
-    notes
+<p>The first of one of the classic examples of why you should not parse
+XML or HTML with a regular expression. It's much harder to get right than
+people think. The first may match multiple paragraphs. The second only matches
+a paragraph that contains no other tags.</p>
 </div>
 </div>
 
@@ -334,8 +420,14 @@ are matching is the key to effective regular expressions.</p>
 <h1>Matching Nothing</h1>
 <p>Remember <code>a*</code> and <code>a?</code> are successful when they
 match nothing.</p>
+
+<ul class="incremental">
+    <li><code>s/\s*/:/g</code></li>
+    <li>userid password homedir</li>
+    <li>:u:s:e:r:i:d::p:a:s:s:w:o:r:d::h:o:m:e:d:i:r:</li>
+</ul>
 <div class="handout">
-    notes
+<p>The example is based on actual code that I saw used in a real system.</p>
 </div>
 </div>
 
@@ -346,7 +438,9 @@ match nothing.</p>
     <li>Efficiency</li>
 </ul>
 <div class="handout">
-    notes
+<p>I said regular expressions are a language. Therefore, you should think of
+each expression you write as a little program or function. As such, you should
+think about writing them and maintaining them much as you would any other code.</p>
 </div>
 </div>
 
@@ -358,7 +452,10 @@ match nothing.</p>
     <li>Explicit is better</li>
 </ul>
 <div class="handout">
-    notes
+<p>Readable regular expressions are more readable. Try to make its meaning
+clear. Don't use unnecessarily clever tricks. Take pity on the person who will
+maintain this. If you can break into smaller expressions and match them separately
+or build a larger expression out of smaller ones, try to do that.</p>
 </div>
 </div>
 
@@ -370,7 +467,15 @@ match nothing.</p>
     <li>Nested quantifiers can be dangerous: <code>/(\w*\s*)+/</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>In the normal case, a regular expression will keep trying to match in as
+many places in the string as possible as long as it has not succeeded.
+Anchors are powerful because they can tell the regular expression to give up
+early instead of trying to continue. Explicit strings have a similar
+effect. If there is an explicit string at the beginning of the regular
+expression, the engine will normally scan the text first looking for that
+string and may give up without matching anything else.</p>
+<p>Nested quantifiers can be extremely slow due to exponential time
+complexity caused by multiple attempts to backtrack over the string.</p>
 </div>
 </div>
 
@@ -379,11 +484,19 @@ match nothing.</p>
 <ul class="incremental">
     <li><code>/[\s\t\r\n]/</code></li>
     <li><code>/[a-z-]/</code></li>
+    <li><code>/[A-]/</code></li>
     <li><code>/[][]/</code></li>
     <li><code>/[.*?+]/</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>Character classes have a few surprises built in. Remember that the escape
+sequences effectively expand inside a character class. So the first expression
+is basically a wordier version of <code>\s</code>. If the dash character is in
+a position that could not be part of a range, it has no special meaning.
+If it is in the right place, it has to be part of a range. The closing square
+bracket is not special as the first character of a character class (or the
+first after the <code>^</code> for a negated character class.</p>
+<p>As I said earlier, the metacharacters have no meaning in a character class.</p>
 </div>
 </div>
 
@@ -396,18 +509,31 @@ match nothing.</p>
     <li>Positive and negative lookbehind not supported by JavaScript</li>
 </ul>
 <div class="handout">
-    notes
+<p>Sometimes you would like to have quantifiers that match as little as they
+can before allowing the rest of the expression to match. The non-greedy forms
+of the quantifiers do just that. They are the same as the normal quantifiers,
+modified by a trailing <code>?</code>.</p>
+<P>The positive and negative lookahead assertions are like general purpose
+anchors. They are not part of the match itself, but they only allow the
+expression to match if what's in the parenthesis matches (or not in the case
+of the negative lookahead).</p>
+<p>Some regular expression systems also have lookbehinds, which can be used
+before a string. They are however, not supported by JavaScript.</p>
 </div>
 </div>
 
 <div class="slide">
 <h1>Examples</h1>
 <ul class="incremental">
-    <li><code>/^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$/</code></li>
-    <li><code>/^\d{1,3}$/</code></li>
+    <li><code>/\A(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\z/</code></li>
+    <li><code>/\A\d{1,3}\z/</code></li>
+    <li><code>/\A(?!0\d)\d{1,3}\z/</code></li>
+    <li><code>/\A[1-9]\d{0,2}\z/</code></li>
 </ul>
 <div class="handout">
-    notes
+<p>These all match different variations of 1-3 digits. Try to figure out
+what each one does. And be very precise when you try to describe each. The
+differences are sometimes quite subtle.</p>
 </div>
 </div>
 
@@ -416,7 +542,9 @@ match nothing.</p>
 <p><em>Mastering Regular Expressions</em> by Jeffrey Friedl</p>
 <p>Available from O'Reilly and on Safari</p>
 <div class="handout">
-    notes
+<p>This is probably the best reference I know of for really understanding
+regular expressions. If you read and really understand this book, you will
+know more than you need for most regular expression problems.</p>
 </div>
 </div>
 
