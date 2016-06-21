@@ -385,7 +385,7 @@ If the input string is long, it can also result in very slow matches.</p>
 <div class="slide">
 <h1>Alternation</h1>
 <ul>
-    <li>Slow: <code>/C\w*\.com|c\w*\.com/</code></li>
+    <li>Slow: <code>/c\w*\.com|c\w*\.con/</code></li>
     <li>Order: <code>/cat|dog|rabbit|goat|cattle|deer/</code></li>
     <li>Precedence: <code>/^cat|dog$/</code></li>
 </ul>
@@ -423,9 +423,11 @@ a paragraph that contains no other tags.</p>
 match nothing.</p>
 
 <ul class="incremental">
-    <li><code>s/\s*/:/g</code></li>
     <li>userid password homedir</li>
+    <li><code>s/\s*/:/g</code></li>
     <li>:u:s:e:r:i:d::p:a:s:s:w:o:r:d::h:o:m:e:d:i:r:</li>
+    <li><code>s/\s+/:/g</code></li>
+    <li>userid:password:homedir</li>
 </ul>
 <div class="handout">
 <p>The example is based on actual code that I saw used in a real system.</p>
@@ -510,7 +512,9 @@ first after the <code>^</code> for a negated character class.</p>
     <li>Non-greedy quantifiers: <code>+?</code>, <code>*?</code>, <code>??</code>, <code>{n,m}?</code></li>
     <li>Positive lookahead: <code>abc(?=def)</code></li>
     <li>Negative lookahead: <code>abc(?!def)</code></li>
-    <li>Positive and negative lookbehind not supported by JavaScript</li>
+    <li>Positive and negative lookbehind not supported by JavaScript<ul>
+        <li><code>(?&lt;=abc)def</code>, <code>(?&lt;!abc)def</code></li>
+    </ul</li>
 </ul>
 <div class="handout">
 <p>Sometimes you would like to have quantifiers that match as little as they

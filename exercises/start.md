@@ -18,4 +18,7 @@
 5. Match a variable name
     - Alphanumeric characters plus underscore
     - The first character cannot be a digit.
-
+6. What does `/^$/` match?
+7. What does `/^\s*$/` match?
+8. What does `/\S/` match?
+9. Write a regex to match a time.
