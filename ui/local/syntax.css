@@ -3,17 +3,17 @@
 .synBString { color: #c9a7ff; }
 .synChar { color: #ff00ff; }
 .synComment { color: #7f7f7f; font-style: italic; }
-.synDataType { color:#0000ff; }
-.synDecVal { color:#00007f; }
-.synError { color:#ff0000; font-style: italic; font-weight: bold; }
-.synFloat { color:#00007f; }
+.synDataType { color:#0000aa; }
+.synDecVal { color:#00287f; }
+.synError { color:#cc0000; font-style: italic; font-weight: bold; }
+.synFloat { color:#00287f; }
 .synFunction { color:#007f00; }
-.synIString { color:#ff0000; }
+.synIString { color:#cc0000; }
 .synKeyword { font-weight: bold; }
 .synOperator { color:#ffa500; }
 .synOthers { color:#b03060; }
 .synRegionMarker { color:#96b9ff; font-style: italic; }
 .synReserved { color:#9b30ff; font-weight: bold; }
-.synString { color:#ff0000\; }
-.synVariable { color:#0000ff; font-weight: bold; }
+.synString { color:#cc0000; }
+.synVariable { color:#0000aa; font-weight: bold; }
 .synWarning { color:#0000ff; font-style: italic; font-weight: bold; }
