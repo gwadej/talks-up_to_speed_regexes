@@ -80,6 +80,9 @@ html>body .external {border-bottom: none;}
 img.incremental {visibility: hidden;}
 .slide .current { font-weight: bold; }
 
+.centered { text-align: center; }
+.left { float: left; }
+.right { float: right; }
 
 /* diagnostics
 
